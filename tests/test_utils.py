@@ -85,9 +85,9 @@ def test_get_workflow_with_uuid_or_name(session, new_user):
 
     # Check that an exception is raised when passing the wrong owner
     another_user_uuid = str(uuid4())
-    with pytest.raises(ValueError):
+    with pytest.raises(PermissionError):
         _get_workflow_with_uuid_or_name(str(workflow.id_), another_user_uuid)
-    with pytest.raises(ValueError):
+    with pytest.raises(PermissionError):
         _get_workflow_with_uuid_or_name(workflow.name, another_user_uuid)
     with pytest.raises(ValueError):
         _get_workflow_with_uuid_or_name(f"{workflow.name}.1", another_user_uuid)
